@@ -16,6 +16,8 @@ require("./models/myWord");
 require("./models/grammer");
 require("./models/phrases");
 require("./models/videos");
+require("./models/country");
+
 
 const PORT = 5000;
 
@@ -32,6 +34,8 @@ app.use(require("./routes/grammer"));
 app.use(require("./routes/myWord"));
 app.use(require("./routes/phrases"));
 app.use(require("./routes/user"));
+app.use(require("./routes/country"));
+
 
 mongoose.connect(MONGOURI, {
     useNewUrlParser: true,

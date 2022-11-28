@@ -20,9 +20,10 @@ router.post("/signup", async (req, res) => {
             try {
                 const user = new User({ email, password });
                 user.save();
+                console.log(user._id)
                 const token = jwt.sign({ userId: user._id }, jwtkey);
 
-                res.send({ token });
+                res.send({ token, });
             } catch (err) {
                 return res.json({ error: "Invalid Email or password" });
             }

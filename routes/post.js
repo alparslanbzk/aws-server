@@ -22,7 +22,7 @@ router.get("/allpost", (req, res) => {
         });
 });
 //https://stackoverflow.com/questions/42492431/mongoose-random-documents-non-sequential
-router.get("/shorts", (req, res) => {
+/* router.get("/shorts", (req, res) => {
     Shorts.find()
         .limit(100)
         .then((posts) => {
@@ -32,7 +32,7 @@ router.get("/shorts", (req, res) => {
         .catch((err) => {
             console.log(err);
         });
-});
+}); */
 
 router.post("/search-users", (req, res) => {
     console.log("bura2", req.body.params.text);

@@ -12,6 +12,24 @@ const MyWord = mongoose.model("Word");
 router.get("/word", (req, res) => {
     //res.send("Home")
     console.log(req.query.id);
+    const page = req.query.page;
+    console.log(page)
+
+    Word.find({ listedBy: req.query.id })
+        .populate("listedBy", "_id name color")
+        .skip(page*100)
+        .limit(100)
+        .then((word) => {
+            res.json({ word });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+router.get("/word2", (req, res) => {
+    //res.send("Home")
+    console.log(req.query.id);
     Word.find({ listedBy: req.query.id })
         .populate("listedBy", "_id name color")
         .then((word) => {
@@ -21,7 +39,6 @@ router.get("/word", (req, res) => {
             console.log(err);
         });
 });
-
 /* router.get("/shorts", (req, res) => {
     //res.send("Home")
     Shorts.find()
@@ -36,7 +53,7 @@ router.get("/word", (req, res) => {
 
 router.post("/word", (req, res) => {
     const { word, translate } = req.body;
-
+    
     if (!word || !translate) {
         return res.status(404).json("Lütfen gerekli alanları doldurunuz");
     }

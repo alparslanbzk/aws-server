@@ -19,4 +19,23 @@ router.get("/myuser", requireToken, (req, res) => {
         });
 });
 
+router.delete('/deleteUser/:userId',requireToken,(req,res)=>{
+    console.log("/deleteUser/:userId",req.params.userId)
+    User.findOne({_id:req.params.userId})
+    .exec((err,user)=>{
+        if(err || !user){
+            return res.status(422).json({error:err})
+        }
+        if(user._id.toString() === req.user._id.toString()){
+              user.remove()
+              .then(result=>{
+                  res.json(result)
+              }).catch(err=>{
+                  console.log(err)
+              })
+        }
+    })
+})
+
+
 module.exports = router;

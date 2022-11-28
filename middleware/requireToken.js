@@ -4,6 +4,8 @@ const User = mongoose.model("User");
 const { jwtkey } = require("../keys");
 
 module.exports = (req, res, next) => {
+    
+    console.log("requireToken")
     const { authorization } = req.headers;
     //authorization === Bearer sfafsafa
     if (!authorization) {
