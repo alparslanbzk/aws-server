@@ -13,7 +13,7 @@ router.get("/word", (req, res) => {
     //res.send("Home")
     console.log(req.query.id);
     const page = req.query.page;
-    console.log(page)
+    console.log("sayfa",page)
 
     Word.find({ listedBy: req.query.id })
         .populate("listedBy", "_id name color")
@@ -33,7 +33,8 @@ router.get("/word2", (req, res) => {
     Word.find({ listedBy: req.query.id })
         .populate("listedBy", "_id name color")
         .then((word) => {
-            res.json({ word });
+            var count = word.length;
+            res.json({ word,count });
         })
         .catch((err) => {
             console.log(err);
